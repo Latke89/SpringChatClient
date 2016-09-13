@@ -33,5 +33,16 @@ public class SampleSpringAppController {
 		return "redirect:/";
 	}
 
+	@RequestMapping(path = "/chat", method = RequestMethod.GET)
+	public String chat(Model model, HttpSession session) {
+		return "chat";
+	}
 
+	@RequestMapping(path = "/input", method = RequestMethod.POST)
+	public String input(HttpSession session, String message) {
+		WebChatClient myClient = new WebChatClient();
+		myClient.sendMessage(message);
+		return "redirect:/chat";
+
+	}
 }
