@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-color : orange">
 
 
 <form action="/input" method="post">
     <input type="text" placeholder="Please enter your message" name="message" />
     <button type="submit">Send</button>
+</form>
+
+<form action="/history" method="post">
+    <button type="submit">History</button>
+    {{#ConnectionHandler}}
+    In connection handler
+    {{#myContainer}}
+    in mycontainer
+    {{#.}}
+    in the list
+    <b>{{.}}</b>
+    {{/.}}
+    {{/myContainer}}
+    {{/ConnectionHandler}}
 
 </form>
 

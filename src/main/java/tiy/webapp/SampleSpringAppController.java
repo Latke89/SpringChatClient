@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  * Created by Brett on 9/12/16.
@@ -44,5 +45,12 @@ public class SampleSpringAppController {
 		myClient.sendMessage(message);
 		return "redirect:/chat";
 
+	}
+
+	@RequestMapping(path = "/history", method = RequestMethod.POST)
+	public String history(HttpSession session, ArrayList<String> list) {
+		WebChatClient myClient = new WebChatClient();
+		myClient.sendMessage(":::START_HISTORY_TRANSFER:::");
+		return "redirect:/chat";
 	}
 }

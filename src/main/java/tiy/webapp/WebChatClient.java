@@ -23,8 +23,18 @@ public class WebChatClient {
 				BufferedReader inputFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
 				outputToServer.println(message);
-				serverResponse = inputFromServer.readLine();
-				System.out.println(serverResponse);
+				if(message.equals(":::START_HISTORY_TRANSFER:::")) {
+					while(true) {
+						serverResponse = inputFromServer.readLine();
+						System.out.println(serverResponse);
+						if(serverResponse.equals(":::END_HISTORY_TRANSFER:::")) {
+							break;
+						}
+					}
+				} else {
+					serverResponse = inputFromServer.readLine();
+					System.out.println(serverResponse);
+				}
 
 				clientSocket.close();
 
